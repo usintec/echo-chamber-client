@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('https://clara-api.illuminance.tech/', { autoConnect: true }); // Single connection
+const socket = io('https://clara-api.illuminance.tech/', {
+  autoConnect: true,
+  transports: ['websocket'], // ⬅️ only websocket, no polling
+  withCredentials: true }); // Single connection
 
 export default function ChatApp() {
   const [roomId, setRoomId] = useState('');
